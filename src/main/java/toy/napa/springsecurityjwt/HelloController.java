@@ -39,8 +39,7 @@ public class HelloController {
             throw new Exception("Incorrect username or passsword", e);
         }
 
-        final UserDetails userDetails = userDetailsServiceImpl.loadUserByUsername(authenticationRequest.getUsername());
-        final String jwt = jwtProvider.generateToken(userDetails);
+        final String jwt = jwtProvider.generateToken(authenticationRequest.getUsername());
 
         return ResponseEntity.status(HttpStatus.OK).body(new AuthenticationResponse(jwt));
     }
